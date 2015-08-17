@@ -62,7 +62,7 @@
 				json.valueArr[2]/=100;
 				if (json.valueArr[1] === 0) {
 					for (var i = 0; i < 3; i++) {
-						rgbArr[i] = json.valueArr[2];
+						rgbArr[i] = Math.round(json.valueArr[2]*255);
 					};
 				}else{
 					var q,p,k,r,g,b;
@@ -182,7 +182,7 @@
 				};
 			};
 			if (json.type === 'hsl') {
-				h = json.valueArr[0];
+				h = +json.valueArr[0];
 				s = json.valueArr[1]/100;
 				l = json.valueArr[2]/100;
 			};
