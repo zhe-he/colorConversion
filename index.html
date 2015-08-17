@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>颜色转换示例demo</title>
+<style type="text/css">
+*{margin: 0; padding: 0}
+
+.item{margin: 5px; height: 30px;}
+.item > input{height: 26px;}
+</style>
+<script type="text/javascript" src="js/colorConversion.js"></script>
+</head>
+<body>
+<input type="color" name="color">
+<div class="item">
+	<span>当前颜色/需要转换的颜色</span>
+	<input type="text" value="#000" class="color">
+</div>
+<div class="item">
+	<input type="button" name="sixteen" value="转换为16进制">
+	<input type="text" class="color">
+</div>
+<div class="item">
+	<input type="button" name="rgb" value="转换为rgb">
+	<input type="text" class="color">
+</div>
+<div class="item">
+	<input type="button" name="hsl" value="转换为hsl">
+	<input type="text" class="color">
+</div>
+<script type="text/javascript">
+	var oColor = document.querySelector('input[name="color"]');
+	var aInput = document.querySelectorAll('.item .color');
+	var aBtn = document.querySelectorAll('.item input[type="button"]');
+	oColor.addEventListener('change', function (){
+		aInput[0].value = oColor.value;
+		for (var i = 0; i < aBtn.length; i++) {
+			aBtn[i].click();
+		};
+	}, false);
+
+	aBtn[0].addEventListener('click', function (){
+		var value = aInput[0].value;
+		if (!value) {
+			value = prompt("请输入色值");
+			while (value == null) {
+				value = prompt("请输入色值");
+			};
+		};
+		aInput[0].value = value;
+		oColor.value = aInput[1].value = colorConversion.toHex(value);
+	});
+
+	aBtn[1].addEventListener('click', function (){
+		var value = aInput[0].value;
+		if (!value) {
+			value = prompt("请输入色值");
+			while (value == null) {
+				value = prompt("请输入色值");
+			};
+		};
+		aInput[0].value = value;
+		aInput[2].value = colorConversion.toRgb(value);
+		oColor.value = colorConversion.toHex(value);
+	});
+
+	aBtn[2].addEventListener('click', function (){
+		var value = aInput[0].value;
+		if (!value) {
+			value = prompt("请输入色值");
+			while (value == null) {
+				value = prompt("请输入色值");
+			};
+		};
+		aInput[0].value = value;
+		aInput[3].value = colorConversion.toHsl(value);
+		oColor.value = colorConversion.toHex(value);
+	});
+
+</script>
+</body>
+</html>
